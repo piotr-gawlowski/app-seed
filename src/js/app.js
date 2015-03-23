@@ -4,8 +4,7 @@
 
 'use strict';
 
-
-var configApp = () => {
+var configApp = ($httpProvider) => {
 
 };
 

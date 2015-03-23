@@ -3,8 +3,10 @@ var gulp = require('gulp'),
     babel = require('gulp-babel'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
+    rename = require('gulp-rename'),
     cssmin = require('gulp-cssmin'),
     nodemon = require('gulp-nodemon'),
+    ngAnnotate = require('gulp-ng-annotate'),
     livereload = require('gulp-livereload'),
     prefix = require('gulp-autoprefixer'),
     sourcemaps = require('gulp-sourcemaps'),
@@ -19,9 +21,12 @@ gulp.task('build:js', function(){
         .pipe(sourcemaps.init())
         .pipe(babel())
         .pipe(concat('app.js'))
+        .pipe(ngAnnotate())
+        .pipe(gulp.dest('frontend/js'))
+        .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('frontend/js/'))
+        .pipe(gulp.dest('frontend/js'))
         .pipe(livereload());
 });
 

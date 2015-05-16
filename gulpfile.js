@@ -18,6 +18,7 @@ var gulp = require('gulp'),
 
 gulp.task('build:js', function(){
     gulp.src(jsPath)
+        .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(babel())
         .pipe(concat('app.js'))
@@ -32,6 +33,7 @@ gulp.task('build:js', function(){
 
 gulp.task('build:css', function(){
     gulp.src(sassPath)
+        .pipe(plumber())
         .pipe(sass({sourcemap: true, style: 'compact'}))
         .pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
         .pipe(cssmin())
